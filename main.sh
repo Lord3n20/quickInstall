@@ -9,3 +9,7 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 yes | makepkg -si
 cd .. && yes | rm -r yay
+
+# Start independant scripts
+./dwm
+./st
