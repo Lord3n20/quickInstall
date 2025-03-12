@@ -1,0 +1,20 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+  exec startx &>/dev/null
+else
+  [[ $TERM == "st-256color" ]] && exec tmux
+fi
+
+[[ $- != *i* ]] && return
+
+alias vencord='sh -c "$(curl -sS https://raw.githubusercontent.com/Vendicated/VencordInstaller/main/install.sh)"'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias connectJBL='bluetoothctl connect 98:52:3D:CD:0F:52'
+
+export EDITOR=nvim
+PS1='\[\e[38;5;51;1m\]\u\[\e[0;97m\]@\[\e[38;5;51;1m\]\h\[\e[0m\] \[\e[95;1m\]\w\[\e[0m\] \\$ '

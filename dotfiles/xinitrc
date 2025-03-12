@@ -1,0 +1,32 @@
+#syncthing &
+
+cd ~
+
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+
+sudo mkdir /run/enzo/
+sudo chown enzo:enzo /run/enzo/
+export XDG_RUNTIME_DIR=/run/enzo/$UID
+
+pulseaudio -k 
+pulseaudio -D
+
+sudo dinitctl start avahi-daemon
+sudo dinitctl start cupsd
+
+exec sudo thinkfan &
+
+while true; do
+  xsetroot -name " : `[[ '$(playerctl metadata title)' != 'No players found' ]] && playerctl metadata title` 󰓃: `bluetoothctl devices Connected > /dev/null && bluetoothctl devices Connected | cut -d ' ' -f3-` : `head -c 16 /proc/acpi/ibm/thermal | tail -c 2`°C 󱐌: `cat /sys/class/power_supply/BAT0/capacity`% `cat /sys/class/power_supply/BAT0/status` `date +%H:%M`"
+	sleep 2
+done &
+
+feh --no-fehbg --bg-fill --randomize ~/.wall/*
+picom --blur-method "dual_kawase" --blur-size "5" --backend "glx" &
+
+exec min-browser &
+exec discord-ptb &
+light -S 100
+exec betterbird &
+exec /usr/local/bin/dwm
+light -S 100
