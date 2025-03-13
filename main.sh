@@ -4,11 +4,11 @@
 # This script will install all dependencies for the other scripts to run.
 # At the moment this just includes: yay, git
 
-#yes | sudo pacman -S --needed git base-devel
-#git clone https://aur.archlinux.org/yay.git
-#cd yay
-#makepkg -si
-#cd .. && yes | rm -r yay
+yes | sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd .. && yes | rm -r yay
 
 # Make independant scripts executable
 chmod +x st.sh dwm.sh dotfiles
